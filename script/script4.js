@@ -17,31 +17,54 @@ function Article(name, url, img){
 
 
 
-let article1 = new Article('article1','http://google.com','../image/user1.jpg');
-let article2 = new Article('article2','http://google.com','../image/user1.jpg');
-let article3 = new Article('article3','http://google.com','../image/user1.jpg');
-let article4 = new Article('article4','http://google.com','../image/user1.jpg');
-let article5 = new Article('article5','http://google.com','../image/user1.jpg');
+let article1 = new Article('one','http://google.com','../image/user1.jpg');
+let article2 = new Article('two','http://google.com','../image/user1.jpg');
+let article3 = new Article('three','http://google.com','../image/user1.jpg');
+let article4 = new Article('four','http://google.com','../image/user1.jpg');
+let article5 = new Article('five','http://google.com','../image/user1.jpg');
+let article6 = new Article('six','http://google.com','../image/user1.jpg');
+let article7 = new Article('seven','http://google.com','../image/user1.jpg');
+let article8 = new Article('eight','http://google.com','../image/user1.jpg');
+let article9 = new Article('nine','http://google.com','../image/user1.jpg');
 
-let Vuedata = {
-}
 
-let app = Vue.createApp({});
-
-app.component('vue-article',{
-	data() {
+let app1 = Vue.createApp({
+	data(){
 		return {
-			articles: [ article1, article2, article3, article4, article5,],
+			articles: [ article1, article2, article3, article4, article5, article6, article7, article8, article9],
+			searchStr: '',
 		};
 	},
-	props: ['test'],
-	template: `
-		<div>
-			<ul  type='none'>
-				<li v-for='item in articles'> <a :href='item.url'> {{ item.name }} <img :src='item.img' height='100' width='100'></img> </a> {{ test }} </li>
-			</ul>
-		</div>
-	`,
+});
+app1.mount('#vueApp');
+
+// Javascript Module 3 Lesson 3 Exercise 2
+
+/* 2. Реализовать редактируемые текстовой тег. Например: дан тег 
+ <p> c текстом «Измени моё содержимое». По нажатию на него 
+открывается всплывающее окошко с элементов input по средству 
+которого можно изменить содержимое тега <p>. Ещё пример как 
+можно реализовать можно увидеть на этом сайте: 
+https://ruseller.com/lessons/les446/example/code.html# 
+Здесь представлен пример организации редактирования 
+текста в <li> элементах. */
+
+let app2 = Vue.createApp({
+	data(){
+		return {
+			text: 'Измени моё содержание!!!',
+			showInputTag:	false,
+		};
+	},
+	methods: {
+		showInput(){
+			this.showInputTag = true;
+		}
+	}
+	
+	
 });
 
-app.mount('#VueApp');
+app2.mount('#customTag');
+
+

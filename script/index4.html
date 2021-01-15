@@ -1,0 +1,28 @@
+<!DOCTTYPE html>
+
+<html>
+	<head>
+	<title>Vue Lesson4</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="https://unpkg.com/vue@next"></script>
+	</head>
+
+	<body>
+		<div id='services'>
+			<p v-for='serv in this.services'><input  v-bind:value='serv.name' type="checkbox" v-on:change='select(serv,$event.target)'> {{ serv.name }} </p>
+			<p > Сумма услуг = {{ this.sum }} </p>
+		</div>
+		
+		<div id='vuearticles'>
+			<button v-on:click='this.changeview'><img v-bind:src='this.view.src'> {{ viewtext }}</button>
+			<div v-bind:style='viewstyle'>
+				<div  v-for='article in viewarticles' v-bind:key='article.id'>
+				<a :href='article.url'> {{ article.name }} 
+					<img :src='article.img' :height='(this.view == this.viewarray[0]) ? this.size : this.size/5'></img> 
+				</a></div>
+			</div>
+		</div>
+		
+		<script src='./scripts/vue.js'></script>
+	</body>
+</html>

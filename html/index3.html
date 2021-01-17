@@ -1,67 +1,39 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Vue module</title>
-		<style>
-			body{
-				background-image: url('../image/background.jpg');
-				background-repeat: no-repeat;
-				background-size: 100% auto;
-			}
-			h1{
-                text-align: center;
-
-			}
-			#morebutton *{
-				display: block;
-				margin-left: auto;
-				margin-right: auto;
-				border: 3px solid black;
-			    text-align: center;
-			    max-width: 1000px;
-			    max-height: fit-content;
-			}
-            #morebutton button{
-                width: 300px;
-                
-            }
-            #menu{
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                flex-basis: 300px;
-                align-items: center;
-                justify-content: center;
-            }
-            #menu > li {
-                margin-left: 30px;
-            }
-            #main > div{
-                text-align: center;
-            }
-		</style>
-		<script src="https://unpkg.com/vue@next"></script>
 		<meta charset="utf-8">
+		<title>JS Vue Lesson 3</title>
+		<script src="https://unpkg.com/vue@next"></script>
+		<style>
+			ul > li {
+				border: solid 2px blue;
+			}
+			ul p {
+				min-width: 100px;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Главная страница пользователя</h1>
-        <div id='main' >
-            <ul id='menu' type='none'>
-                <li v-on:click='activate1'>Главная</li>
-                <li v-on:click='activate2'>Проекты</li>
-                <li v-on:click='activate3'>Услуги</li>
-                <li v-on:click='activate4'>Контакты</li>
-            </ul>
-            <div v-if='active1'>Главная текст</div>
-            <div v-if='active2'>Проекты текст</div>
-            <div v-if='active3'>Услуги текст</div>
-            <div v-if='active4'>Контакты текст</div>
-        </div>
-		<div id='morebutton'>
-			<p>Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!Некоторый текст!</p>
-            <button v-on:click='activatemore'> Подробнее</button>
-            <p v-if='activate'>Другой скрытый текст!Другой скрытый текст!Другой скрытый текст!Другой скрытый текст!Другой скрытый текст!</p>
+		<p>Task #1</p>
+		<div id='vueApp'>
+			<input type='text' placeholder='Введите название статьи' v-model.lazy='searchStr'></input>
+			<p> {{ searchStr }} </p>
+			<ul  type='none'>
+				<li v-for='article in searchArticle()' v-bind:key='article.id'> 
+					<a :href='article.url'> <p>article: {{ article.name }} </p>
+						<img :src='article.img' height='100' width='100'> 
+					</a> 
+				</li>
+			</ul>
 		</div>
-		<script src="../script/script3.js"></script>
+		
+		<p>Task #2</p>
+		
+		<div id="customTag">
+			<input type='text' v-bind:value='text' v-if='showInputTag' @change='inputtext($event.target.value)'></input>
+			<p v-bind:value='text' v-if='!showInputTag' @click='this.showInputTag = true'> {{ text }} </p>
+		</div>
+		
+		<script src="../script/script3.js" ></script>
 	</body>	
 </html>
